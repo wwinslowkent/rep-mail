@@ -4,7 +4,11 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
+gem "rspec-core", :github => "rspec/rspec-core"
+gem "rspec-expectations", :github => "rspec/rspec-expectations"
+gem "rspec-mocks", :github => "rspec/rspec-mocks"
+gem "rspec-support", :github => "rspec/rspec-support"
+gem "rspec-rails", :github => "rspec/rspec-rails"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
