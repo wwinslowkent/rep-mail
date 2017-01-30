@@ -12,7 +12,6 @@ class BillsController < ApplicationController
 
   def show
     @bill = Bill.find(params[:id])
-    binding.pry
     @messages = @bill.messages
     @message = Message.new
   end
