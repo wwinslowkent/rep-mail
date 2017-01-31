@@ -1,0 +1,31 @@
+
+
+<div class='small-12 columns' id='billshow'>
+  <h1 class='small-10 columns'><%= @bill.title %></h1>
+  <% if current_user.admin %>
+        <%= button_to "Edit Bill", edit_bill_path, method: :get %>
+      <% end %>
+</div>
+
+<div id = 'ha'>
+  <p class='small-8 columns'><%= @bill.description %></p>
+</div>
+<div id='form'>
+
+  <% if user_signed_in? %>
+
+  <% else %>
+    <%= button_to 'Sign In to Submit a new Bill', new_user_session_path %>
+  <% end %>
+  <div id="app" data-id="<%= @bill.id %>"> </div>
+
+
+
+
+  <br />
+  <p class='small-8 columns'>
+    <%= link_to "Home", root_path %>
+  </p>
+
+
+</div>

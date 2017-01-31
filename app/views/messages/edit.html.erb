@@ -1,0 +1,7 @@
+<div id='pad'>
+  <h1>Edit Message</h1>
+
+  <%= render 'form' %>
+  <%= button_to 'Delete Issue', game_path(@issue), method: :delete, data: { confirm: "Are you sure? All reviews for this game will be deleted. This action cannot be undone." } %>
+  <%= link_to 'Cancel', issue_path %>
+</div>

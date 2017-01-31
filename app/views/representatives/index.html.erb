@@ -1,0 +1,14 @@
+<h1>Aye yo</h1>
+
+<% @representatives.each do |rep| %>
+<%= link_to representative_path(rep) do %>
+  <div class='repbox'>
+    <img src='<%= rep.image %>' style="width:200px;"/>
+    <%= rep.name %>
+    <%= rep.party %><br/>
+  </div>
+  <% end %>
+<% end %>
+
+
+<%= button_to 'Add a new Bill', new_bill_path, method: :get %>

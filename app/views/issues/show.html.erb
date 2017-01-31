@@ -1,0 +1,31 @@
+
+
+<div class='small-12 columns' id='gameshow'>
+  <h1 class='small-10 columns'><%= @issue.title %></h1>
+  <% if admin_signed_in? %>
+        <%= button_to "Edit Issue", edit_issue_path, method: :get %>
+      <% end %>
+</div>
+
+<div id = 'ha'>
+  <p><%= @issue.summary %></p>
+</div>
+<div id='form'>
+
+  <% if user_signed_in? %>
+
+  <% else %>
+    <%= button_to 'Sign In to Submit a new Issue', new_user_session_path %>
+  <% end %>
+  <div id="app" data-id="<%= @issue.id %>"> </div>
+
+
+
+
+  <br />
+  <p>
+    <%= link_to "Home", root_path %>
+  </p>
+
+
+</div>

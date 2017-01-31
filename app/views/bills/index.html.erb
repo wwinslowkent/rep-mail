@@ -1,0 +1,12 @@
+<h1>Aye yo</h1>
+
+<% @bills.each do |bill| %>
+<%= link_to bill_path(bill) do %>
+  <div class='billbox'>
+    <%= bill.title %><br/>
+  </div>
+  <% end %>
+<% end %>
+
+
+<%= button_to 'Add a new Bill', new_bill_path, method: :get %>
