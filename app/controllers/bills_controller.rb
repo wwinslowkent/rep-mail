@@ -4,7 +4,7 @@ class BillsController < ApplicationController
     @bills = Bill.all.order(created_at: :asc)
     if params[:search]
       @search = params[:search]
-      @bills = Bill.where('name  ~* ?', "#{@search}").order(name: :asc)
+      @bills = Bill.where('title  ~* ?', "#{@search}")
     else
       @bills = Bill.all.order(created_at: :asc)
     end

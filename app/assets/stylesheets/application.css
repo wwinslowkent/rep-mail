@@ -13,3 +13,37 @@
  *= require_tree .
  *= require_self
  */
+
+ .billbox {
+   width: 320px;
+   padding: 10px;
+   border: 5px solid gray;
+   margin: 0;
+ }
+
+ .billbox:hover {
+    background-color: yellow;
+}
+
+.billbox:active {
+    background-color: green;
+}
+
+.small-8 {
+  padding-left: 25px;
+}
+
+.repbox {
+  width: 320px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+}
+
+.repbox:hover {
+   background-color: yellow;
+}
+
+.repbox:active {
+   background-color: green;
+}

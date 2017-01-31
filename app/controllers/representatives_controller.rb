@@ -1,12 +1,13 @@
-class BillsController < ApplicationController
+class RepresentativesController < ApplicationController
 
   def index
     @representatives = Representative.all.order(created_at: :asc)
     if params[:search]
       @search = params[:search]
-      @representatives = Representative.where('czip  ~* ?', "#{@search}").order(zip: :asc)
+
+      @representatives = Representative.includes(:zipcodes).where("zipcodes.zip = '#{@search}'").references(:zipcodes)
     else
-      @bills = Bill.all.order(created_at: :asc)
+      @representatives = Representative.all.order(created_at: :asc)
     end
   end
 
@@ -16,33 +17,33 @@ class BillsController < ApplicationController
 
   def new
     if user_signed_in?
-      @bill = Bill.new
+      @representative = Representative.new
     else
-      flash[:alert] = "Please sign in to add a bill"
+      flash[:alert] = "Please sign in to add a representative"
       redirect_to new_user_session_path
     end
   end
 
   def create
     if user_signed_in?
-      @bill = Bill.create(bill_params)
+      @representative = Representative.create(rep_params)
 
-      if @bill.save && user_signed_in?
-        flash[:notice] = "Thank you for adding this bill to our database!"
-        redirect_to bill_path(@bill)
+      if @representative.save && user_signed_in?
+        flash[:notice] = "Thank you for adding this representative to our database!"
+        redirect_to representative_path(@representative)
       else
-        flash[:notice] = @bill.errors.full_messages.to_sentence
+        flash[:notice] = @representative.errors.full_messages.to_sentence
         redirect_back(fallback_location: root_path)
       end
     else
-      flash[:alert] = "Please sign in to add a bill"
+      flash[:alert] = "Please sign in to add a representative"
       redirect_to new_user_session_path
     end
   end
 
   def edit
     if current_user.admin
-      @bill = Bill.find(params[:id])
+      @representative = Representative.find(params[:id])
     else
       flash[:alert] = "UNAUTHORIZED"
       redirect_to new_admin_session_path
@@ -51,14 +52,14 @@ class BillsController < ApplicationController
 
   def update
     if current_user.admin
-      @bill = Bill.find(params[:id])
-      @bill.update_attributes(bill_params)
+      @representative = Representative.find(params[:id])
+      @representative.update_attributes(representative_params)
 
-      if @bill.save
-        flash[:notice] = "Thank you for editing this bill!"
-        redirect_to bill_path(@bill)
+      if @representative.save
+        flash[:notice] = "Thank you for editing this representative!"
+        redirect_to representative_path(@representative)
       else
-        flash[:notice] = @bill.errors.full_messages.to_sentence
+        flash[:notice] = @representative.errors.full_messages.to_sentence
         render :edit
       end
     else
@@ -69,10 +70,10 @@ class BillsController < ApplicationController
 
   def destroy
     if current_user.admin
-      @bill = Bill.find(params[:id])
-      @bill.destroy
-      flash[:alert] = "You have deleted this bill successfully"
-      redirect_to bills_path
+      @representative = Representative.find(params[:id])
+      @representative.destroy
+      flash[:alert] = "You have deleted this representative successfully"
+      redirect_to representatives_path
     else
       flash[:alert] = 'UNAUTHORIZED'
       redirect_to new_admin_session_path
@@ -81,11 +82,16 @@ class BillsController < ApplicationController
 
   private
 
-  def bill_params
-    params.require(:bill).permit(
-      :title,
-      :description,
-      :location
+  def rep_params
+    params.require(:representative).permit(
+      :name,
+      :state,
+      :party,
+      :address,
+      :email,
+      :image,
+      :phone,
+      :webiste
     )
   end
 end

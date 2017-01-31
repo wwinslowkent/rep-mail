@@ -9,6 +9,11 @@ gem "rspec-expectations", :github => "rspec/rspec-expectations"
 gem "rspec-mocks", :github => "rspec/rspec-mocks"
 gem "rspec-support", :github => "rspec/rspec-support"
 gem "rspec-rails", :github => "rspec/rspec-rails"
+gem 'validates_email_format_of'
+gem "devise"
+gem "pry-rails"
+# foundation Formatting
+gem 'foundation-rails', "6.2.4.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
