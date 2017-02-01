@@ -4,9 +4,10 @@ class CreateRepresentative < ActiveRecord::Migration[5.0]
       t.string :name, null: false
       t.string :state, null: false
       t.string :party, null: false
-      t.string :czip, null: false
       t.string :address, null: false
-      t.string :email, null: false
+      t.string :phone, null: false
+      t.string :website, null: false
+      t.string :image, null: false
       t.timestamps
     end
   end

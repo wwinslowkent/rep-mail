@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170131160220) do
+ActiveRecord::Schema.define(version: 20170130220833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20170131160220) do
   end
 
   create_table "imessages", force: :cascade do |t|
-    t.integer "issue_id",   null: false
-    t.integer "message_id", null: false
+    t.integer "issue_id"
+    t.integer "message_id"
     t.index ["issue_id"], name: "index_imessages_on_issue_id", using: :btree
     t.index ["message_id"], name: "index_imessages_on_message_id", using: :btree
   end
@@ -47,8 +47,10 @@ ActiveRecord::Schema.define(version: 20170131160220) do
     t.string   "title",      null: false
     t.text     "body",       null: false
     t.boolean  "procon"
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
   create_table "representatives", force: :cascade do |t|
@@ -56,11 +58,11 @@ ActiveRecord::Schema.define(version: 20170131160220) do
     t.string   "state",      null: false
     t.string   "party",      null: false
     t.string   "address",    null: false
+    t.string   "phone",      null: false
+    t.string   "website",    null: false
+    t.string   "image",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "image",      null: false
-    t.string   "website"
-    t.string   "phone"
   end
 
   create_table "rzips", force: :cascade do |t|

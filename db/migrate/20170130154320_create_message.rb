@@ -4,6 +4,7 @@ class CreateMessage < ActiveRecord::Migration[5.0]
       t.string :title, null: false
       t.text :body, null: false
       t.boolean :procon
+      t.belongs_to :user, null: false
       t.timestamps
 
     end

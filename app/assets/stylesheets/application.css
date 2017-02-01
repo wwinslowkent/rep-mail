@@ -29,6 +29,20 @@
     background-color: green;
 }
 
+input[type="button"], input[type="submit"] {
+  border:1px solid #BFBFBF;
+  color: #8C8C8C;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  font-family: Verdana;
+  width: auto;
+  height: auto;
+  font-size: 100%;
+  padding: 1% 4%;
+  background-color: #FCFAF9;
+}
+
 .small-8 {
   padding-left: 25px;
 }
