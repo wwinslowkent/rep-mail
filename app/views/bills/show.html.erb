@@ -8,24 +8,21 @@
 </div>
 
 <div id = 'ha'>
-  <p class='small-8 columns'><%= @bill.description %></p>
-</div>
-<div id='form'>
-
-  <% if user_signed_in? %>
-
-  <% else %>
-    <%= button_to 'Sign In to Submit a new Bill', new_user_session_path %>
-  <% end %>
-  <div id="app" data-id="<%= @bill.id %>"> </div>
-
-
-
-
-  <br />
-  <p class='small-8 columns'>
-    <%= link_to "Home", root_path %>
+  <p class='small-8 columns'><%= @bill.description %>
   </p>
-
-
 </div>
+<br/>
+
+<% if user_signed_in? %>
+
+<% else %>
+  <%= button_to 'Sign In to Submit a new Bill', new_user_session_path %>
+<% end %>
+
+<div class='small-8 columns' id="app" data-id="<%= @bill.id %>">
+</div>
+
+<br />
+<p class='small-8 columns'>
+  <%= link_to "Home", root_path %>
+</p>

@@ -10,16 +10,16 @@ class Api::V1::BillsController < ApplicationController
 
   def show
     @bill = Bill.find(params[:id])
-    @reviews = @bill.reviews.order(:created_at).reverse
+    @messages = @bill.messages.order(:created_at).reverse
     @user = current_user
     @messageUsers = []
-    @isAdmin = admin_signed_in?
-    @reviews.each do |review|
-      user = User.find(review.user_id)
+    @isAdmin = @user.admin
+    @messages.each do |message|
+      user = User.find(message.user_id)
       @messageUsers << user
     end
-    render json: { user: @user, reviews: @reviews, messageUsers: @messageUsers, isAdmin: @isAdmin }
-    # passing in user and review through ajax call in react
+    render json: { user: @user, messages: @messages, messageUsers: @messageUsers, isAdmin: @isAdmin }
+    # passing in user and message through ajax call in react
     # http://localhost:3000/api/v1/bills/3.json to see the object
   end
 end

@@ -1,0 +1,26 @@
+<div data-sticky-container>
+  <div class="title-bar large-12 columns small-12 columns medium-12 columns" id = 'title' data-sticky data-options="marginTop:0;" style="width:100%" data-top-anchor="1" >
+
+    <div class="title-bar-left">
+      <%= image_tag 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Great_Seal_of_the_United_States_(reverse).svg/2000px-Great_Seal_of_the_United_States_(reverse).svg.png', id: 'logo'%>
+      <strong><%= link_to 'Rep Mail', root_path %></strong>
+    </div>
+
+    <div class="title-bar-right">
+
+        <% if user_signed_in? %>
+          Logged in as <strong><%= current_user.username %></strong>.
+          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+          <%= link_to "Logout", destroy_user_session_path, method:  :delete, :class => 'navbar-link'  %>
+        <% elsif current_user.admin %>
+          Logged in as Admin: <strong><%= current_user.email %></strong>. |
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+          <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %> |
+          <%= link_to "Login Admin", new_admin_session_path, :class => 'navbar-link'  %>
+        <% end %>
+    </div>
+
+  </div>
+</div>

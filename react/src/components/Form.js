@@ -13,22 +13,12 @@ const Form = props => {
              <input type="text" name="comment" placeholder="Enter body here..." onChange={props.handleBodyChange}/>
            </div>
            <div className="input-field col s3">
-           <p>
-           <div className="radio">
-         <label>
-           <input type="radio" value="option1"
-                         onChange={props.handleOptionChange('option 1')} />
-           For
-         </label>
-       </div>
-       <div className="radio">
-         <label>
-           <input type="radio" value="option2"
-                         onChange={this.handleOptionChange('option 2')} />
-           Against
-         </label>
-       </div>
-      </p>
+
+           <select value={props.procon} onChange={props.handleOptionChange}>
+            <option value="true">For</option>
+            <option value="false">Against</option>
+           </select>
+
            </div>
            <input type="hidden"  name="userId" value={props.userId} />
            <div className="row">
@@ -41,7 +31,7 @@ const Form = props => {
    );
  } else {
    return(
-   <div className="row search">
+   <div className="col search">
      <input id="add-review" type='submit' value="Add New Message" className="btn" onClick={event => {event.preventDefault(), props.handleClicked();}} />
    </div>
  );}

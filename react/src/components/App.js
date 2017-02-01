@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Review from './Review';
+import Message from './Message';
 import Form from './Form';
 
 
@@ -62,13 +62,10 @@ class App extends Component {
   }
 
 
-  handleProconChange(procon) {
-      if (procon === 'option 1') {
-        this.setState({ procon: true });
-      }
-      else {
-        this.setState({ procon: false });
-      }
+  handleProconChange(event) {
+    console.log(event.target.value);
+    console.log("hey");
+    this.setState({ procon: event.target.value });
   }
 
   handleEditClicked(messageId) {
@@ -97,7 +94,7 @@ class App extends Component {
     event.preventDefault();
     let fetchBody = { rating: this.state.rating,  message: this.state.message, id: messageId, type: "update" };
     let newReviews = [];
-    fetch(`../api/v1/games/${pageId}/messages/${messageId}`,
+    fetch(`../api/v1/bills/${pageId}/messages/${messageId}`,
       { method: "PATCH",
       body: JSON.stringify(fetchBody) })
       .then(function(response) {
@@ -121,7 +118,7 @@ class App extends Component {
     event.preventDefault();
     let fetchBody = { id: messageId, type: "upvote", userId: this.state.user.id};
     let newReviews = [];
-    fetch(`../api/v1/games/${pageId}/messages/${messageId}`,
+    fetch(`../api/v1/bills/${pageId}/messages/${messageId}`,
       { method: "PATCH",
       body: JSON.stringify(fetchBody) })
       .then(function(response) {
@@ -137,7 +134,7 @@ class App extends Component {
     event.preventDefault();
     let fetchBody = { id: messageId, type: "downvote", userId: this.state.user.id };
     let newReviews = [];
-    fetch(`../api/v1/games/${pageId}/messages/${messageId}`,
+    fetch(`../api/v1/bills/${pageId}/messages/${messageId}`,
       { method: "PATCH",
       body: JSON.stringify(fetchBody) })
       .then(function(response) {
@@ -155,7 +152,7 @@ class App extends Component {
     let newReviews = [];
   //  let newUserArr = this.state.messageUsers;
     //newUserArr.push(this.state.user);
-    fetch(`../api/v1/games/${pageId}/messages`,
+    fetch(`../api/v1/bills/${pageId}/messages`,
       { method: "POST",
       body: JSON.stringify(fetchBody) })
       .then(function(response) {
@@ -176,7 +173,7 @@ class App extends Component {
     let fetchBody = { id: messageId };
     let newReviews = [];
     let pageId = parseInt(document.getElementById('app').dataset.id);
-    fetch(`/api/v1/games/${pageId}/messages/${messageId}`,
+    fetch(`/api/v1/bills/${pageId}/messages/${messageId}`,
     { method: "DELETE",
     body: JSON.stringify(fetchBody)
   }).then(function(response){
@@ -191,7 +188,7 @@ class App extends Component {
     $.ajax({
       credentials: 'same-origin',
       method: "GET",
-      url: `../api/v1/games/${pageId}.json`
+      url: `../api/v1/bills/${pageId}.json`
     })
     .done(data => {
       this.setState({
@@ -213,6 +210,7 @@ class App extends Component {
     let isAdmin = this.state.isAdmin;
     let revealedKey = this.state.revealedKey;
     let revealedEdit;
+    let procon = this.state.procon;
 
 
     if (this.state.user !== null) {
@@ -295,6 +293,7 @@ class App extends Component {
           handleProconChange={this.handleProconChange}
           clicked={clicked}
           userId={userId}
+          procon={procon}
         />
         {messages}
 
