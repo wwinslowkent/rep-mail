@@ -14,7 +14,7 @@ const Form = props => {
            </div>
            <div className="input-field col s3">
 
-           <select value={props.procon} onChange={props.handleOptionChange}>
+           <select value={props.procon} onChange={props.handleProconChange}>
             <option value="true">For</option>
             <option value="false">Against</option>
            </select>
