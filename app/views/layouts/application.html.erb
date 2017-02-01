@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>RepMail</title>
-    <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= render 'shared/navigation' %>
+
+    <title><%= content_for?(:title) ? yield(:title) : "Rep Mail" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
+
+    <div id='core' class='small-12 columns'>
+      <% if notice %>
+        <div class='text-center small-12 columns' id='flash'>
+          <div class="alert alert-success"><%= notice %></div>
+        </div>
+      <% end %>
+
+      <% if alert %>
+        <div class='text-center small-12 columns' id='flash'>
+          <div class="alert alert-danger"><%= alert %></div>
+        </div>
+      <% end %>
+
     <%= yield %>
+
+    </div>
   </body>
 </html>

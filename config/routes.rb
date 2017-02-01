@@ -9,6 +9,13 @@ Rails.application.routes.draw do
     resources :messages
   end
 
+  namespace :api do
+      namespace :v1 do
+        resources :bills, only: [:index, :show] do
+          resources :messages
+        end
+      end
+    end
   resources :issues do
     resources :messages
   end
