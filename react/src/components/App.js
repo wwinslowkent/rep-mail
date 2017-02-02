@@ -11,7 +11,7 @@ class App extends Component {
       message: "",
       title: "",
       body: "",
-      procon: null,
+      procon: true,
       clicked: false,
       user: null,
       messageUsers: [],
@@ -28,6 +28,7 @@ class App extends Component {
     this.handleUpVote = this.handleUpVote.bind(this);
     this.handleDownVote = this.handleDownVote.bind(this);
     this.handleProconChange = this.handleProconChange.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
   }
 
 
@@ -85,27 +86,35 @@ class App extends Component {
   }
 
   handleBodyChange(event) {
+    console.log(this.state.body);
     let newBody = event.target.value;
-    this.setState({ message: newBody });
+    this.setState({ body: newBody });
+  }
+
+  handleTitleChange(event) {
+    console.log(event.target.value);
+    let newTitle = event.target.value;
+    console.log(newTitle);
+    this.setState({ title: newTitle });
   }
 
   handleEdit(messageId) {
     let pageId = parseInt(document.getElementById('app').dataset.id);
     event.preventDefault();
-    let fetchBody = { rating: this.state.rating,  message: this.state.message, id: messageId, type: "update" };
-    let newReviews = [];
+    let fetchBody = { title: this.state.title,  body: this.state.body, procon: this.state.procon, id: messageId, type: "update", billId: pageId };
+    let newMessages = [];
     fetch(`../api/v1/bills/${pageId}/messages/${messageId}`,
       { method: "PATCH",
       body: JSON.stringify(fetchBody) })
       .then(function(response) {
-        newReviews = response.json();
-        return newReviews;
+        newMessages = response.json();
+        return newMessages;
       }).then((response) => {
       this.setState({
         messages: response.messages,
-        rating: "",
-        message: "",
-        editReview: false,
+        procon: true,
+        title: "",
+        body: "",
         messageUsers: response.users
       });
       }
@@ -117,13 +126,13 @@ class App extends Component {
 
     event.preventDefault();
     let fetchBody = { id: messageId, type: "upvote", userId: this.state.user.id};
-    let newReviews = [];
+    let newMessages = [];
     fetch(`../api/v1/bills/${pageId}/messages/${messageId}`,
       { method: "PATCH",
       body: JSON.stringify(fetchBody) })
       .then(function(response) {
-        newReviews = response.json();
-        return newReviews;
+        newMessages = response.json();
+        return newMessages;
       }).then((response) =>
       this.setState({ messages: response.messages, messageUsers: response.users })
     );
@@ -133,13 +142,13 @@ class App extends Component {
     let pageId = parseInt(document.getElementById('app').dataset.id);
     event.preventDefault();
     let fetchBody = { id: messageId, type: "downvote", userId: this.state.user.id };
-    let newReviews = [];
+    let newMessages = [];
     fetch(`../api/v1/bills/${pageId}/messages/${messageId}`,
       { method: "PATCH",
       body: JSON.stringify(fetchBody) })
       .then(function(response) {
-        newReviews = response.json();
-        return newReviews;
+        newMessages = response.json();
+        return newMessages;
       }).then((response) =>
       this.setState({ messages: response.messages, messageUsers: response.users })
     );
@@ -148,22 +157,23 @@ class App extends Component {
   handleSubmit(event) {
     let pageId = parseInt(document.getElementById('app').dataset.id);
     event.preventDefault();
-    let fetchBody = { rating: this.state.rating,  message: this.state.message, userId: this.state.user.id };
-    let newReviews = [];
+    let fetchBody = { title: this.state.title,  body: this.state.body, userId: this.state.user.id, procon: this.state.procon };
+    let newMessages = [];
   //  let newUserArr = this.state.messageUsers;
     //newUserArr.push(this.state.user);
     fetch(`../api/v1/bills/${pageId}/messages`,
       { method: "POST",
       body: JSON.stringify(fetchBody) })
       .then(function(response) {
-        newReviews = response.json();
-        return newReviews;
+        newMessages = response.json();
+        return newMessages;
       }).then((response) =>
       this.setState({
         messages: response.messages,
-        rating: "",
+        title: "",
         message: "",
         clicked: false,
+        procon: true,
         messageUsers: response.users
       })
     );
@@ -171,14 +181,14 @@ class App extends Component {
 
   handleDelete(messageId){
     let fetchBody = { id: messageId };
-    let newReviews = [];
+    let newMessages = [];
     let pageId = parseInt(document.getElementById('app').dataset.id);
     fetch(`/api/v1/bills/${pageId}/messages/${messageId}`,
     { method: "DELETE",
     body: JSON.stringify(fetchBody)
   }).then(function(response){
-    newReviews = response.json();
-    return newReviews;
+    newMessages = response.json();
+    return newMessages;
   })
   .then((response) => this.setState({ messages: response.messages, messageUsers: response.users }));
   }
@@ -233,7 +243,6 @@ class App extends Component {
       let handleUpVote = () => {
         this.handleUpVote(message.id);
       };
-
       let handleDownVote = () => {
         this.handleDownVote(message.id);
       };
@@ -255,10 +264,9 @@ class App extends Component {
         messageUserHolder = messageUsers[counter].name;
       }
         return(
-          <Review
+          <Message
           key={message.id}
           id={message.id}
-          rating={message.rating}
           message={message.message}
           username={messageUserHolder}
           messageUser={message.user_id}
@@ -273,8 +281,9 @@ class App extends Component {
           createdAt={createdAt}
           handleUpVote={handleUpVote}
           handleDownVote={handleDownVote}
-          upVotes={message.up_votes}
-          downVotes={message.down_votes}
+          vote={message.vote}
+          title={message.title}
+          body={message.body}
 
 
 
