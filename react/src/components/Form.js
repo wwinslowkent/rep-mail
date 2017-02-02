@@ -7,10 +7,10 @@ const Form = props => {
          <input id="add_review" type='submit' value="Actually, Nevermind" className="btn" onClick={event => {event.preventDefault(), props.handleClicked();}} />
          <form>
            <div className="input-field col s3">
-             <input type="text" name="rating" placeholder="Enter title here..." onChange={props.handleTitleChange}/>
+             <input type="text" name="title" placeholder="Enter title here..." onChange={props.handleTitleChange}/>
            </div>
            <div className="input-field col s3">
-             <input type="text" name="comment" placeholder="Enter body here..." onChange={props.handleBodyChange}/>
+             <input type="text" name="body" placeholder="Enter body here..." onChange={props.handleBodyChange}/>
            </div>
            <div className="input-field col s3">
 
