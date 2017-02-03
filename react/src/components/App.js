@@ -125,7 +125,7 @@ class App extends Component {
     let pageId = parseInt(document.getElementById('app').dataset.id);
 
     event.preventDefault();
-    let fetchBody = { id: messageId, type: "upvote", userId: this.state.user.id};
+    let fetchBody = { id: messageId, type: "upvote", userId: this.state.user.id, billId: pageId };
     let newMessages = [];
     fetch(`../api/v1/bills/${pageId}/messages/${messageId}`,
       { method: "PATCH",
@@ -141,7 +141,7 @@ class App extends Component {
   handleDownVote(messageId) {
     let pageId = parseInt(document.getElementById('app').dataset.id);
     event.preventDefault();
-    let fetchBody = { id: messageId, type: "downvote", userId: this.state.user.id };
+    let fetchBody = { id: messageId, type: "downvote", userId: this.state.user.id, billId: pageId };
     let newMessages = [];
     fetch(`../api/v1/bills/${pageId}/messages/${messageId}`,
       { method: "PATCH",
