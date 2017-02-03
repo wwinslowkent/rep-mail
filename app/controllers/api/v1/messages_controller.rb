@@ -19,7 +19,7 @@ class Api::V1::MessagesController < ApplicationController
     @bmessage = Bmessage.find_by(message_id: data["id"])
     if message.delete
       @bmessage.delete
-      @messages = @bill.messages.order(:created_at).reverse
+      @messages = @bill.messages.order(:vote).reverse
       @messages.each do |message|
         user = User.find(message.user_id)
         @messageUsers << user
@@ -39,7 +39,7 @@ class Api::V1::MessagesController < ApplicationController
       message.body = data["body"]
       message.procon = data["procon"]
       message.save
-      @messages = @bill.messages.order(:created_at).reverse
+      @messages = @bill.messages.order(:vote).reverse
       @messages.each do |message|
         user = User.find(message.user_id)
         @messageUsers << user
@@ -47,7 +47,7 @@ class Api::V1::MessagesController < ApplicationController
     end
     if (data["type"] == "upvote")
       if ( Vote.where("message_id = ? AND user_id = ?", data["id"], data["userId"]).empty?)
-        Vote.create(vote: "1", message_id: data["id"], user_id: data["userId"])
+        @vote = Vote.create(vote: "1", message_id: data["id"], user_id: data["userId"])
         message.vote += 1
       else
         @vote = Vote.where("message_id = ? AND user_id = ?", data["id"], data["userId"])[0]
@@ -64,7 +64,7 @@ class Api::V1::MessagesController < ApplicationController
       end
       @vote.save
       message.save
-      @messages = @bill.messages.order(:created_at).reverse
+      @messages = @bill.messages.order(:vote).reverse
       @messages.each do |message|
         user = User.find(message.user_id)
         @messageUsers << user
@@ -72,8 +72,9 @@ class Api::V1::MessagesController < ApplicationController
     end
     if (data["type"] == "downvote")
       if ( Vote.where("message_id = ? AND user_id = ?", data["id"], data["userId"]).empty?)
-        Vote.create(vote: "-1", message_id: data["id"], user_id: data["userId"])
+        @vote = Vote.create(vote: "-1", message_id: data["id"], user_id: data["userId"])
         message.vote -= 1
+
       else
         @vote = Vote.where("message_id = ? AND user_id = ?", data["id"], data["userId"])[0]
         if (@vote.vote == "-1")
@@ -89,7 +90,7 @@ class Api::V1::MessagesController < ApplicationController
       end
       @vote.save
       message.save
-      @messages = @bill.messages.order(:created_at).reverse
+      @messages = @bill.messages.order(:vote).reverse
       @messages.each do |message|
         user = User.find(message.user_id)
         @messageUsers << user
@@ -109,7 +110,7 @@ class Api::V1::MessagesController < ApplicationController
     @messageUsers = []
 
     if @message.save!
-      @messages = @bill.messages.order(:created_at)
+      @messages = @bill.messages.order(:vote)
       @messages.each do |message|
         user = User.find(message.user_id)
         @messageUsers << user

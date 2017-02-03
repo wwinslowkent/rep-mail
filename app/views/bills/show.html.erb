@@ -2,9 +2,7 @@
 
 <div class='small-12 columns' id='billshow'>
   <h1 class='small-10 columns'><%= @bill.title %></h1>
-  <% if current_user.admin %>
-        <%= button_to "Edit Bill", edit_bill_path, method: :get %>
-      <% end %>
+
 </div>
 
 <div id = 'ha'>
@@ -16,7 +14,9 @@
 <% if user_signed_in? %>
 
 <% else %>
-  <%= button_to 'Sign In to Submit a new Bill', new_user_session_path %>
+  <div class='small-10 columns'>
+    <%= button_to 'Sign In to Submit a new Message', new_user_session_path %>
+  </div>
 <% end %>
 
 <div class='small-8 columns' id="app" data-id="<%= @bill.id %>">
