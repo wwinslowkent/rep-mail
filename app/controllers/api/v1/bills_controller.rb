@@ -10,7 +10,7 @@ class Api::V1::BillsController < ApplicationController
 
   def show
     @bill = Bill.find(params[:id])
-    @messages = @bill.messages.order(:created_at).reverse
+    @messages = @bill.messages.order(:vote).reverse
     @user = current_user
     @messageUsers = []
     @isAdmin = @user.admin

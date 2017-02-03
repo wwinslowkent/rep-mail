@@ -14,6 +14,21 @@
  *= require_self
  */
 
+ body {
+   background-image:
+    linear-gradient(rgba(250,245,245,.7), rgba(250,245,245,.4)),
+    url('/assets/constitution.jpeg');
+   background-size: cover;
+   background-position: center center;
+ }
+#logo {
+  height: 100px;
+}
+
+#title {
+  background-image: url('/assets/flag.jpg;');
+  background-size: 100% 100%;
+}
  .billbox {
    width: 320px;
    padding: 10px;
@@ -22,20 +37,20 @@
  }
 
  .billbox:hover {
-    background-color: yellow;
+    background-color: rgba(200,245,200,.7);
 }
 
 .billbox:active {
-    background-color: green;
+    background-color: rgba(200,245,200,.4);
 }
 
 input[type="button"], input[type="submit"] {
   border:1px solid #BFBFBF;
   color: #8C8C8C;
-  border-radius: 30px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  font-family: Verdana;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  font-family: Georgia;
   width: auto;
   height: auto;
   font-size: 100%;
