@@ -54,7 +54,7 @@ class Api::V1::MessagesController < ApplicationController
         if (@vote.vote == "1")
           @vote.vote = "0"
           message.vote -= 1
-        elsif (@vote.vote = "-1")
+        elsif (@vote.vote == "-1")
           @vote.vote = "1"
           message.vote += 2
         else
@@ -62,6 +62,7 @@ class Api::V1::MessagesController < ApplicationController
           message.vote += 1
         end
       end
+      @vote.save
       message.save
       @messages = @bill.messages.order(:created_at).reverse
       @messages.each do |message|
@@ -78,7 +79,7 @@ class Api::V1::MessagesController < ApplicationController
         if (@vote.vote == "-1")
           @vote.vote = "0"
           message.vote += 1
-        elsif (@vote.vote = "1")
+        elsif (@vote.vote == "1")
           @vote.vote = "-1"
           message.vote -= 2
         else
@@ -86,6 +87,7 @@ class Api::V1::MessagesController < ApplicationController
           message.vote -= 1
         end
       end
+      @vote.save
       message.save
       @messages = @bill.messages.order(:created_at).reverse
       @messages.each do |message|
