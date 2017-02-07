@@ -27,7 +27,7 @@
    background-image:
 
     url('/assets/constitution.jpeg');
-    background-size: cover;
+    background-size: 100%;
     background-position: center center;
  }
 .darkbox {
