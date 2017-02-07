@@ -5,16 +5,19 @@
 <% end %>
 
 
-<p>
+<div class="large-6 small-6 columns ">
+  <br/>
+  <br/>
   <%= form_tag(bills_path, :method => "get", id: "search-form") do %>
      <%= text_field_tag :search, params[:search], placeholder: "Search for bills" %>
-     <div class='text-center'><%= submit_tag "Search", name: nil%> </div>
+     <div class='text-left'><%= submit_tag "Search", name: nil%> </div>
   <% end %>
 </p>
   <p>
     <%= form_tag(representatives_path, :method => "get", id: "search-form") do %>
        <%= text_field_tag :search, params[:search], placeholder: "Enter your zip code to see who represents you" %>
-       <div class='text-center'><%= submit_tag "Search", name: nil%> </div>
+       <div class='text-left'><%= submit_tag "Search", name: nil%> </div>
     <% end %>
   </p>
+</div>
 </div>

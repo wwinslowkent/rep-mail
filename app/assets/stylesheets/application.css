@@ -14,15 +14,49 @@
  *= require_self
  */
 
+
+.headshot {
+  position: relative;
+    left: 30px;
+}
+
  body {
+   margin-left:auto;
+   margin-right:auto;
+   color: linear-gradient(rgba(250,245,245,.7), rgba(250,245,245,.4));
    background-image:
-    linear-gradient(rgba(250,245,245,.7), rgba(250,245,245,.4)),
+
     url('/assets/constitution.jpeg');
-   background-size: cover;
-   background-position: center center;
+    background-size: cover;
+    background-position: center center;
  }
+.darkbox {
+  width: 800px;
+  margin-left:auto;
+  margin-right:auto;
+  height: 100%;
+  background: rgb(250,245,245);
+}
+ .dark {
+   width: 800px;
+   margin-left:auto;
+   margin-right:auto;
+   height: 100%;
+   background-color: rgba(250,245,245,.7);
+ }
+
+ .titlename {
+   color: white;
+ }
+ .navbar-link {
+   color: white;
+ }
+
 #logo {
   height: 100px;
+}
+.titletext {
+  color: white;
 }
 
 #title {
@@ -58,19 +92,34 @@ input[type="button"], input[type="submit"] {
   background-color: #FCFAF9;
 }
 
+.title-bar-left {
+  font-size: 38px;
+  text-shadow: 0px 0px 8px #000;
+  color: #eeeeee;
+
+}
+
+.title-bar-right {
+  display: table-cell;
+  vertical-align: bottom;
+  text-shadow: 0px 0px 8px #000;
+  color: #eeeeee;
+
+}
+
 .small-8 {
   padding-left: 25px;
 }
 
 .repbox {
-  width: 320px;
+  width: 500px;
   padding: 10px;
   border: 5px solid gray;
   margin: 0;
 }
 
 .repbox:hover {
-   background-color: yellow;
+   background-color: rgba(45,45,200,.7);
 }
 
 .repbox:active {

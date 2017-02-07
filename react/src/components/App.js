@@ -17,6 +17,12 @@ class App extends Component {
       messageUsers: [],
       isAdmin: false,
       revealedKey: null,
+      repname: "",
+      repemail: "",
+      sen1name: "",
+      sen1email: "",
+      sen2name: "",
+      sen2email: ""
 
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -64,8 +70,6 @@ class App extends Component {
 
 
   handleProconChange(event) {
-    console.log(event.target.value);
-    console.log("hey");
     this.setState({ procon: event.target.value });
   }
 
@@ -86,15 +90,12 @@ class App extends Component {
   }
 
   handleBodyChange(event) {
-    console.log(this.state.body);
     let newBody = event.target.value;
     this.setState({ body: newBody });
   }
 
   handleTitleChange(event) {
-    console.log(event.target.value);
     let newTitle = event.target.value;
-    console.log(newTitle);
     this.setState({ title: newTitle });
   }
 
@@ -206,6 +207,12 @@ class App extends Component {
         user: data.user,
         messageUsers: data.messageUsers,
         isAdmin: data.isAdmin,
+        repname: data.repname,
+        repemail: data.repemail,
+        sen1name: data.sen1name,
+        sen1email: data.sen1email,
+        sen2name: data.sen2name,
+        sen2email: data.sen2email
       });
     });
   }
@@ -221,6 +228,12 @@ class App extends Component {
     let revealedKey = this.state.revealedKey;
     let revealedEdit;
     let procon = this.state.procon;
+    let repname = this.state.repname;
+    let repemail = this.state.repemail;
+    let sen1name = this.state.sen1name;
+    let sen1email = this.state.sen1email;
+    let sen2name = this.state.sen2name;
+    let sen2email = this.state.sen2email;
 
 
     if (this.state.user !== null) {
@@ -284,6 +297,12 @@ class App extends Component {
           vote={message.vote}
           title={message.title}
           body={message.body}
+          repname={repname}
+          repemail={repemail}
+          sen1name={sen1name}
+          sen1email={sen1email}
+          sen2name={sen2name}
+          sen2email={sen2email}
 
 
 
@@ -293,7 +312,7 @@ class App extends Component {
     if (this.state.user !== null) {
     return(
 
-      <div>
+      <div className='darkbox'>
         <Form
           handleSubmit={this.handleSubmit}
           handleTitleChange={this.handleTitleChange}
@@ -311,7 +330,7 @@ class App extends Component {
       }
       else {
         return (
-        <div>
+        <div className='darkbox'>
           {messages}
           </div>
         );
