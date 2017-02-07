@@ -1,17 +1,29 @@
 
 
-<div class='small-12 columns' id='billshow'>
-  <h1 class='small-10 columns'><%= @representative.name %></h1>
-  <img src='<%= @representative.image %>' style="width:200px;"/> <br/>
-  <p>State: <%= @representative.state %>,  Party: <%= @representative.party %> </p><br/>
-  <p>Mailing Address: <%= @representative.address %> </p><br/>
-  <a href='<%= @representative.website %>'> The Webiste of <%= @representative.name %> </a><br/>
-  <p>Phone Number: <%= @representative.phone %> </p><br/>
+<div class='dark' id='billshow'>
+
+  <h1><%= @representative.name %></h1>
+  <div class='row'>
+    <div class='large-4 columns'>
+      <img src='<%= @representative.image %>' style="width:200px;" class="headshot"/> <br/>
+      <br/>
+    </div>
+
+    <div class='large-8 columns'>
+      <h5>State: <%= @representative.state %><br/>  Party: <%= @representative.party %> </h5><br/>
+    </div>
+  </div>
+
+<div class='row'>
+  <h5>Mailing Address: <%= @representative.address %> </h5><br/>
+  <h5><a href='<%= @representative.website %>'> The Webiste of <%= @representative.name %> </a></h5><br/>
+  <h5>Phone Number: <%= @representative.phone %> </h5><br/>
 
   <br />
-  <p class='small-8 columns'>
+</div>
+
     <%= link_to "Home", root_path %>
-  </p>
+
 
 
 </div>

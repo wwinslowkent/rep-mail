@@ -108,14 +108,13 @@ class Api::V1::MessagesController < ApplicationController
     @message.user_id = @user.id
     Bmessage.create(bill: @bill, message: @message)
     @messageUsers = []
-
     if @message.save!
       @messages = @bill.messages.order(:vote)
       @messages.each do |message|
         user = User.find(message.user_id)
         @messageUsers << user
       end
-      render json: {messages: @messages, users: @messageUsers }
+      render json: {messages: @messages, users: @messageUsers}
     else
       render json: {message: "Did not work"}, status: 404
     end

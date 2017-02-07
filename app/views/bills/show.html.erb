@@ -1,28 +1,23 @@
+<div class='darkbox'>
 
+  <h1 class='small-10 columns darkbox'><%= @bill.title %></h1>
+  <p class='small-8 columns darkbox'><%= @bill.description %>
+  </p>
 
-<div class='small-12 columns' id='billshow'>
-  <h1 class='small-10 columns'><%= @bill.title %></h1>
+  <br/>
 
-</div>
+  <% if user_signed_in? %>
 
-<div id = 'ha'>
-  <p class='small-8 columns'><%= @bill.description %>
+  <% else %>
+    <div class='small-10 columns darkbox'>
+      <%= button_to 'Sign In to Submit a new Message', new_user_session_path %>
+    </div>
+  <% end %>
+
+  <div class='small-8 columns darkbox' id="app" data-id="<%= @bill.id %>">
+  </div>
+  <br />
+  <p class='small-8 columns darkbox'>
+    <%= link_to "Home", root_path %>
   </p>
 </div>
-<br/>
-
-<% if user_signed_in? %>
-
-<% else %>
-  <div class='small-10 columns'>
-    <%= button_to 'Sign In to Submit a new Message', new_user_session_path %>
-  </div>
-<% end %>
-
-<div class='small-8 columns' id="app" data-id="<%= @bill.id %>">
-</div>
-
-<br />
-<p class='small-8 columns'>
-  <%= link_to "Home", root_path %>
-</p>
