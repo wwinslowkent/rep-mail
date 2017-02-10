@@ -4,14 +4,12 @@ class ApiController < ApplicationController
     if params[:search]
       @search = params[:search]
       @client = HTTPClient.new
-      @uri = "https://igdbcom-internet-bill-database-v1.p.mashape.com/bills/?fields=*&limit=20&offset=0"
-      @key = ENV['XMASHAPE_KEY']
-      @response = @client.get(@uri, :query => {:search => @search }, :header => { :"X-Mashape-Key" => @key, :"Accept" => 'application/json'}).body
+      @uri = "https://api.propublica.org/congress/v1/114/senate/bills/introduced.json"
+      @key = ENV['X_API_KEY']
+      @response = @client.get(@uri, :query => {:search => @search }, :header => { :"X-API-Key" => @key, :"Accept" => 'application/json'}).body
       @parsed = JSON.parse(@response)
       @parsed.each do |body|
-        if (body['cover']) && (body['name']) && (body['summary'])
-          @bills << body
-        end
+        @bills << body
       end
     end
     @bill = Bill.new
