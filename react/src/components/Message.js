@@ -7,9 +7,14 @@ const Message = props => {
       return(
         <div className='darkbox'>
         <br/>
-        <input id="delete" className="button tiny button hollow button success" type="submit" value="Up Vote" name="Delete" onClick={props.handleUpVote}/> &#8196;&#8196;&#8196;&#8196;&#8196;&#8196; {props.title}<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8196;&#8196;&#8196;{props.vote} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8196;&#8196;&#8196;&#8196;&#8196;&#8196;&#8196;&#8196;{props.body}<br/>
-        <input id="delete" className="button tiny button hollow button alert" type="submit" value="Down Vote" name="Delete" onClick={props.handleDownVote}/>&#8196;&#8196;&#8196;&#8196;&#8196;<h9>Posted at {props.createdAt}</h9>
+        {props.title}<br/>
+        {props.body}<br/>
+        <h9>Posted at {props.createdAt}</h9><br/>
+
+
+        <input id="delete" className="" type="submit" value="Like" name="Delete" onClick={props.handleUpVote}/>
+        &nbsp;&nbsp;<h2 className="votevalue">{props.vote}</h2>&nbsp;&nbsp;
+        <input id="delete" className="" type="submit" value="Dislike" name="Delete" onClick={props.handleDownVote}/><br/>
         <br/>Send a message to: <a href={props.repemail}> {props.repname}</a>&#8196;|&#8196;<a href={props.sen1email}>{props.sen1name}</a>&#8196;|&#8196;<a href={props.sen2email}>{props.sen2name}</a>&#8196;
         <div className="col s2 offset-s5 center-align">
           <input id="delete" className="btn" type="submit" value="Delete" name="Delete" onClick={buttonClick}/>
@@ -42,9 +47,12 @@ const Message = props => {
       return(
         <div className='darkbox'>
           <br/>
-          <input id="delete" className="button tiny button hollow button success" type="submit" value="Up Vote" name="Delete" onClick={props.handleUpVote}/> &#8196;&#8196;&#8196;&#8196;&#8196;&#8196; {props.title}<br/>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8196;&#8196;&#8196;{props.vote}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8196;&#8196;&#8196;&#8196;&#8196;&#8196;&#8196;&#8196;{props.body}<br/>
-          <input id="delete" className="button tiny button hollow button alert" type="submit" value="Down Vote" name="Delete" onClick={props.handleDownVote}/>&#8196;&#8196;&#8196;&#8196;&#8196;<h9>Posted at {props.createdAt}</h9>
+          {props.title}<br/>
+          {props.body}<br/>
+          <h9>Posted at {props.createdAt}</h9><br/>
+          <input id="delete" className="button tiny button hollow button success" type="submit" value="Up Vote" name="Delete" onClick={props.handleUpVote}/>
+          &nbsp;&nbsp;<h2 className="votevalue">{props.vote}</h2>&nbsp;&nbsp;
+          <input id="delete" className="button tiny button hollow button alert" type="submit" value="Down Vote" name="Delete" onClick={props.handleDownVote}/><br/>
           <br/>Send a message to: <a href={props.repemail}> {props.repname}</a>&#8196;|&#8196;<a href={props.sen1email}>{props.sen1name}</a>&#8196;|&#8196;<a href={props.sen2email}>{props.sen2name}</a>&#8196;
           <div className="col s2 offset-s5 center-align">
             <input id="delete" className="btn" type="submit" value="Delete" name="Delete" onClick={props.handleDelete}/>     <input id="add-message" type='submit' value="Edit Message" className="btn" onClick={buttonClick} />
@@ -59,10 +67,13 @@ const Message = props => {
     return(
       <div className='darkbox'>
       <br/>
+      {props.title}<br/>
+      {props.body}<br/>
+      <h9>Posted at {props.createdAt}</h9><br/>
 
-      <input id="delete" className="button tiny button hollow button success" type="submit" value="Up Vote" name="Delete" onClick={props.handleUpVote}/> &#8196;&#8196;&#8196;&#8196;&#8196;&#8196; {props.title}<br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8196;&#8196;&#8196;{props.vote}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8196;&#8196;&#8196;&#8196;&#8196;&#8196;&#8196;&#8196;{props.body}<br/>
-      <input id="delete" className="button tiny button hollow button alert" type="submit" value="Down Vote" name="Delete" onClick={props.handleDownVote}/>&#8196;&#8196;&#8196;&#8196;&#8196;<h9>Posted at {props.createdAt}</h9>
+      <input id="delete" className="button tiny button hollow button success" type="submit" value="Up Vote" name="Delete" onClick={props.handleUpVote}/>
+      &nbsp;&nbsp;<h2 className="votevalue">{props.vote}</h2>&nbsp;&nbsp;
+      <input id="delete" className="button tiny button hollow button alert" type="submit" value="Down Vote" name="Delete" onClick={props.handleDownVote}/><br/>
       <br/>Send a message to: <a href={props.repemail}> {props.repname}</a>&#8196;|&#8196;<a href={props.sen1email}>{props.sen1name}</a>&#8196;|&#8196;<a href={props.sen2email}>{props.sen2name}</a>&#8196;
       <div className="col s2 offset-s5 center-align">
           <input id="delete" className="btn" type="submit" value="Delete" name="Delete" onClick={props.handleDelete}/>
@@ -76,11 +87,13 @@ const Message = props => {
     return(
       <div className='darkbox'>
       <br/>
-      <input id="delete" className="button tiny button hollow button success" type="submit" value="Up Vote" name="Delete" onClick={props.handleUpVote}/> &#8196;&#8196;&#8196;&#8196;&#8196;&#8196; {props.title}<br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8196;&#8196;&#8196;{props.vote}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8196;&#8196;&#8196;&#8196;&#8196;&#8196;&#8196;&#8196;{props.body}<br/>
-      <input id="delete" className="button tiny button hollow button alert" type="submit" value="Down Vote" name="Delete" onClick={props.handleDownVote}/>&#8196;&#8196;&#8196;&#8196;&#8196;<h9>Posted at {props.createdAt}</h9>
-      <br/>Send a message to: <a href={props.repemail}> {props.repname}</a>&#8196;|&#8196;<a href={props.sen1email}>{props.sen1name}</a>&#8196;|&#8196;<a href={props.sen2email}>{props.sen2name}</a>&#8196;
-        <hr/>
+      {props.title}<br/>
+      {props.body}<br/>
+      <h9>Posted at {props.createdAt}</h9><br/>
+      <input id="delete" className="button tiny button hollow button success" type="submit" value="Up Vote" name="Delete" onClick={props.handleUpVote}/>
+      &nbsp;&nbsp;<h2 className="votevalue">{props.vote}</h2>&nbsp;&nbsp;
+      <input id="delete" className="button tiny button hollow button alert" type="submit" value="Down Vote" name="Delete" onClick={props.handleDownVote}/><br/>
+      <br/>Send a message to: <a href={props.repemail}> {props.repname}</a>&#8196;|&#8196;<a href={props.sen1email}>{props.sen1name}</a>&#8196;|&#8196;<a href={props.sen2email}>{props.sen2name}</a>&#8196;<hr/>
       </div>
     );
   }

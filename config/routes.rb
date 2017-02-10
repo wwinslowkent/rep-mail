@@ -20,5 +20,7 @@ Rails.application.routes.draw do
     resources :messages
   end
 
+  resources :api, only: [:index]
+
   resources :representatives
 end

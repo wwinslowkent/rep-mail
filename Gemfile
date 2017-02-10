@@ -11,7 +11,7 @@ gem "rspec-support", :github => "rspec/rspec-support"
 gem "rspec-rails", :github => "rspec/rspec-rails"
 gem 'validates_email_format_of'
 gem "devise"
-
+gem 'httpclient'
 # foundation Formatting
 gem 'foundation-rails', "6.2.4.0"
 
